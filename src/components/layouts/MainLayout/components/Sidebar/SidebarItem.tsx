@@ -45,7 +45,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
 
   return (
     <Link
-      scroll={true}
+      scroll={false} // Prevent default scrolling behavior to enable smooth scrolling
       href={hrefValue}
       className="relative inline-flex items-center gap-2 hover:opacity-70 focus:opacity-70"
       key={`${name}-${hrefValue}`}
