@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { SidebarContextProvider } from '@/context/sidebar.context';
 
 import Sidebar from './components/Sidebar';
 
@@ -9,14 +10,18 @@ interface Props {
 }
 
 const MainLayout: React.FC<Props> = ({ children }) => {
-  return (
-    <div className="flex">
-      <Sidebar />
+  const [activeSection, setActiveSection] = React.useState<string | null>(null);
 
-      <article className="container w-full text-clip">
-        <main className="relative min-h-screen">{children}</main>
-      </article>
-    </div>
+  return (
+    <SidebarContextProvider value={{ activeSection, setActiveSection }}>
+      <div className="flex">
+        <Sidebar />
+
+        <article className="container w-full text-clip">
+          <main className="relative min-h-screen">{children}</main>
+        </article>
+      </div>
+    </SidebarContextProvider>
   );
 };
 
