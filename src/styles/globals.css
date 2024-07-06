@@ -10,6 +10,6 @@ html {
   :root {
     /** SIDEBAR SIZE */
     --w-sidebar: 80px;
-    --w-sidebar-expand: 300px;
+    --w-sidebar-expand: 280px;
   }
 }

@@ -3,7 +3,7 @@
 import React, { type PropsWithChildren } from 'react';
 import { AppContextProvider } from '@/context/app.context';
 
-import { Sidebar } from './components/Sidebar';
+import Sidebar from './components/Sidebar';
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (

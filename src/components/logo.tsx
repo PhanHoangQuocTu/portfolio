@@ -4,30 +4,29 @@ import Image, { type ImageProps } from 'next/image';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 
-export interface LogoProps extends Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'> {
+export interface LogoProps extends Omit<ImageProps, 'alt' | 'src'> {
+  imageClassName?: string;
   src?: string;
-  width?: number;
-  height?: number;
   alt?: string;
 }
 
 export const Logo: React.FC<LogoProps> = ({
   src = '/favicon-16x16.png',
   alt = siteConfig.name,
-  width = 184.8,
-  height = 44,
   className,
+  imageClassName,
   ...props
 }) => (
-  <Image
-    className={cn('max-w-full', className)}
-    priority
-    unoptimized
-    quality={100}
-    src={src}
-    width={width}
-    height={height}
-    alt={alt}
-    {...props}
-  />
+  <div className={cn('relative h-10 w-10 overflow-hidden', className)}>
+    <Image
+      className={cn('max-w-full', imageClassName)}
+      priority
+      unoptimized
+      quality={100}
+      src={src}
+      fill
+      alt={alt}
+      {...props}
+    />
+  </div>
 );

@@ -7,11 +7,11 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const SidebarLayout: React.FC<Props> = ({ children, opened }) => {
+const SidebarLayout: React.FC<Props> = ({ children, opened }) => {
   return (
     <aside
       className={cn(
-        'min-w-sidebar max-w-sidebar relative z-50 flex w-full bg-black text-white shadow-md transition-all duration-200',
+        'min-w-sidebar max-w-sidebar relative z-50 flex w-full bg-[#f3f4f8] text-black shadow-md transition-all duration-200',
         {
           'max-w-sidebar-expand': opened,
         }
@@ -21,3 +21,5 @@ export const SidebarLayout: React.FC<Props> = ({ children, opened }) => {
     </aside>
   );
 };
+
+export default React.memo(SidebarLayout);

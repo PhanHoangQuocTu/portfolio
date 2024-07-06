@@ -1,15 +1,68 @@
 import * as React from 'react';
 import { usePathname } from 'next/navigation';
 import { Icons } from '@/assets/icons';
-import { ROUTE } from '@/routes';
+import { SECTION_ID, SECTION_NAME } from '@/routes';
 
-import { SidebarItem } from './SidebarItem';
+import { VStack } from '@/components/ui';
+
+import SidebarItem, { type SidebarItemType } from './SidebarItem';
 
 const SIDEBAR_LIST = [
   {
-    name: 'Home',
-    href: ROUTE.HOME,
-    icon: Icons.badgeDollarSign,
+    name: SECTION_NAME.OVERVIEW,
+    id: SECTION_ID.OVERVIEW,
+    href: '',
+    icon: Icons.home,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.ABOUT,
+    id: SECTION_ID.ABOUT,
+    href: '',
+    icon: Icons.user,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.SERVICES,
+    id: SECTION_ID.SERVICES,
+    href: '',
+    icon: Icons.bolt,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.SKILL,
+    id: SECTION_ID.SKILL,
+    href: '',
+    icon: Icons.codeSandbox,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.EDUCATION,
+    id: SECTION_ID.EDUCATION,
+    href: '',
+    icon: Icons.graduationCap,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.EXPERIENCE,
+    id: SECTION_ID.EXPERIENCE,
+    href: '',
+    icon: Icons.briefcaseBusiness,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.PROJECT,
+    id: SECTION_ID.PROJECT,
+    href: '',
+    icon: Icons.folderGit2,
+    type: 'section',
+  },
+  {
+    name: SECTION_NAME.CONTACT,
+    id: SECTION_ID.CONTACT,
+    href: '',
+    icon: Icons.phone,
+    type: 'section',
   },
 ];
 
@@ -17,16 +70,29 @@ interface Props {
   opened: boolean;
 }
 
-export const SidebarList: React.FC<Props> = ({ opened }) => {
+const SidebarList: React.FC<Props> = ({ opened }) => {
   const pathname = usePathname();
 
   return (
-    <>
-      {SIDEBAR_LIST.map(({ href, name, icon }) => {
-        const isActive = pathname.includes(href);
+    <VStack spacing={16} className="flex-1">
+      {SIDEBAR_LIST?.map(({ href, name, icon, id, type }, index) => {
+        const isActive = pathname?.includes(href);
 
-        return <SidebarItem key={href} href={href} name={name} opened={opened} icon={icon} isActive={isActive} />;
+        return (
+          <SidebarItem
+            key={`${name}-${index}`}
+            href={href}
+            name={name}
+            opened={opened}
+            icon={icon}
+            isActive={isActive}
+            id={id}
+            type={type as SidebarItemType}
+          />
+        );
       })}
-    </>
+    </VStack>
   );
 };
+
+export default React.memo(SidebarList);
