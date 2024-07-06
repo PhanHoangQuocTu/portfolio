@@ -15,17 +15,31 @@ interface IOptions {
   threshold?: number;
 }
 
-const useIntersectionObserver = ({ ids, options = initOptions }: { ids: string[]; options?: IOptions }) => {
+interface Props {
+  ids: string[];
+  options?: IOptions;
+}
+
+const useIntersectionObserver = ({ ids, options = initOptions }: Props) => {
   const { setActiveSection } = useSidebarContext();
+  const observerRef = React.useRef<IntersectionObserver | null>(null);
+
+  const observerOptions = React.useMemo(() => ({ ...initOptions, ...options }), [options]);
 
   React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
       });
-    }, options);
+    }, observerOptions);
+
+    const observer = observerRef.current;
 
     ids.forEach((id) => {
       const element = document.getElementById(id);
@@ -35,14 +49,13 @@ const useIntersectionObserver = ({ ids, options = initOptions }: { ids: string[]
     });
 
     return () => {
-      ids.forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
+      if (observer) {
+        observer.disconnect();
+      }
     };
-  }, [ids, options, setActiveSection]);
+  }, [ids, observerOptions, setActiveSection]);
+
+  return null;
 };
 
 export default useIntersectionObserver;
