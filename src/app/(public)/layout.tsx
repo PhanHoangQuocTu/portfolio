@@ -1,22 +1,14 @@
 'use client';
 
-import React, { type PropsWithChildren } from 'react';
+import React from 'react';
 import { AppContextProvider } from '@/context/app.context';
 
-import Sidebar from './components/Sidebar';
+import MainLayout from '@/components/layouts/MainLayout';
 
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = ({ children }: React.PropsWithChildren) => {
   return (
     <AppContextProvider value={{}}>
-      <div className="flex">
-        <Sidebar />
-
-        <article className="container w-full text-clip">
-          {/* <Header /> */}
-
-          <main className="relative min-h-screen pb-4">{children}</main>
-        </article>
-      </div>
+      <MainLayout>{children}</MainLayout>
     </AppContextProvider>
   );
 };

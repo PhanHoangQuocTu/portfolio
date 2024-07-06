@@ -24,7 +24,16 @@ const SidebarItem: React.FC<Props> = ({ href, isActive, name, opened, icon: Icon
   }, [href, id, type]);
 
   return (
-    <Link href={hrefValue} className="inline-flex items-center gap-2 hover:opacity-50" key={`${name}-${hrefValue}`}>
+    <Link
+      scroll={true}
+      href={hrefValue}
+      className="inline-flex items-center gap-2 hover:opacity-50"
+      key={`${name}-${hrefValue}`}
+      onClick={(e) => {
+        e.preventDefault();
+        document?.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }}
+    >
       <span className="relative z-0 inline-flex aspect-square w-[calc(var(--w-sidebar)-2rem)] items-center justify-center rounded-md">
         <Icon className="text-black transition-all" />
 

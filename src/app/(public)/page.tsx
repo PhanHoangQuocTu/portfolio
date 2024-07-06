@@ -1,7 +1,3 @@
-import React from 'react';
-
-const LandingPage = () => {
-  return <>a</>;
-};
+import LandingPage from '@/modules/LandingPage';
 
 export default LandingPage;
