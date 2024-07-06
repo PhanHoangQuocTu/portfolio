@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import { fontMono, fontSans } from '@/config/fonts';
 import { APP_URL, siteConfig } from '@/config/site';
+import MainLayout from '@/components/layouts/MainLayout';
 
 import { Providers } from './providers';
 
@@ -62,7 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
         className={clsx('bg-background min-h-screen font-sans antialiased', fontSans.variable, fontMono.variable)}
       >
-        <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>{children}</Providers>
+        <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>
+          <MainLayout>{children}</MainLayout>
+        </Providers>
       </body>
     </html>
   );
