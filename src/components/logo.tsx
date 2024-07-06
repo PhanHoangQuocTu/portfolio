@@ -12,7 +12,7 @@ export interface LogoProps extends Omit<ImageProps, 'src' | 'width' | 'height' |
 }
 
 export const Logo: React.FC<LogoProps> = ({
-  src = '/images/logo.webp',
+  src = '/favicon-16x16.png',
   alt = siteConfig.name,
   width = 184.8,
   height = 44,
@@ -22,6 +22,7 @@ export const Logo: React.FC<LogoProps> = ({
   <Image
     className={cn('max-w-full', className)}
     priority
+    unoptimized
     quality={100}
     src={src}
     width={width}

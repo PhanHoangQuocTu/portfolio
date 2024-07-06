@@ -13,17 +13,45 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     extend: {
+      fontSize: {
+        xxs: '0.625rem',
+        sm: ['14px', '20px'],
+        base: ['16px', '20px'],
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
         serif: ['var(--font-serif)', ...fontFamily.serif],
         mono: ['var(--font-mono)', ...fontFamily.mono],
       },
+      flex: {
+        full: '0 0 100%',
+      },
       minHeight: {
         layout: 'calc(100vh - 96px)',
       },
+      minWidth: {
+        sidebar: 'var(--w-sidebar)',
+        'sidebar-expand': 'var(--w-sidebar-expand)',
+      },
       maxWidth: {
         '8xl': '90rem',
+        sidebar: 'var(--w-sidebar)',
+        'sidebar-expand': 'var(--w-sidebar-expand)',
+      },
+      width: {
+        sidebar: 'var(--w-sidebar)',
+        'sidebar-expand': 'var(--w-sidebar-expand)',
       },
       backgroundImage: {},
       boxShadow: {},
@@ -35,6 +63,7 @@ const config: Config = {
         scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
       },
       borderWidth: {
+        DEFAULT: '1.5px',
         1: '1px',
         2: '2px',
         3: '3px',

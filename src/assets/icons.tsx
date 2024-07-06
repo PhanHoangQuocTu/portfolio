@@ -1,11 +1,11 @@
 import { type ForwardRefExoticComponent, type RefAttributes, type SVGProps } from 'react';
-
-import telegram from './svg/telegram.svg';
-import twitter from './svg/twitter.svg';
+import { BadgeDollarSign, Home, LogOut, MenuSquare } from 'lucide-react';
 
 const IconList = {
-  twitter,
-  telegram,
+  badgeDollarSign: BadgeDollarSign,
+  menuSquare: MenuSquare,
+  logout: LogOut,
+  home: Home,
 };
 
 type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;

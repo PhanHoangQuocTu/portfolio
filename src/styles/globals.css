@@ -5,3 +5,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+@layer base {
+  :root {
+    /** SIDEBAR SIZE */
+    --w-sidebar: 80px;
+    --w-sidebar-expand: 300px;
+  }
+}

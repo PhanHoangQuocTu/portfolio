@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React from 'react';
 
 /**
  * Creates a safe context that can be used to provide and consume values in the React component tree.
@@ -8,10 +8,10 @@ import React, { createContext, useContext } from 'react';
  * @return {[(props: { value: ContextValue; children: React.ReactNode }) => JSX.Element, () => ContextValue]} - An array containing the Provider component and the useSafeContext hook.
  */
 export function createSafeContext<ContextValue>(errorMessage: string) {
-  const Context = createContext<ContextValue | null>(null);
+  const Context = React.createContext<ContextValue | null>(null);
 
   const useSafeContext = () => {
-    const ctx = useContext(Context);
+    const ctx = React.useContext(Context);
 
     if (ctx === null) {
       throw new Error(errorMessage);

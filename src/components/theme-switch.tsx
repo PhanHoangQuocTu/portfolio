@@ -1,6 +1,6 @@
 'use client';
 
-import { type FC } from 'react';
+import React from 'react';
 import { useSwitch, type SwitchProps } from '@nextui-org/switch';
 import { useIsSSR } from '@react-aria/ssr';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
@@ -12,7 +12,7 @@ export interface ThemeSwitchProps {
   classNames?: SwitchProps['classNames'];
 }
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({ className, classNames }) => {
+export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ className, classNames }) => {
   const { theme, setTheme } = useTheme();
   const isSSR = useIsSSR();
 

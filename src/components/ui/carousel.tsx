@@ -3,7 +3,7 @@
 
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@nextui-org/button';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';

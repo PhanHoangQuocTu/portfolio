@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -21,15 +21,11 @@ const Marquee = ({
   pauseOnHover = true,
   className,
 }: Props) => {
+  const [start, setStart] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const [start, setStart] = useState(false);
-  function addAnimation() {
+  const addAnimation = () => {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
 
@@ -44,7 +40,13 @@ const Marquee = ({
       getSpeed();
       setStart(true);
     }
-  }
+  };
+
+  React.useEffect(() => {
+    addAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === 'left') {
@@ -54,6 +56,7 @@ const Marquee = ({
       }
     }
   };
+
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === 'fast') {
@@ -70,7 +73,7 @@ const Marquee = ({
     <div
       ref={containerRef}
       className={cn(
-        'scroller relative z-20 max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+        'scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
         className
       )}
     >
