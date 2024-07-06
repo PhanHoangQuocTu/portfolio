@@ -18,11 +18,6 @@ interface Props {
   isActive: boolean;
 }
 
-const SIDEBAR_SECTION_ACTIVE_COLOR = {
-  FROM: '#4b6cb7',
-  TO: '#182848',
-};
-
 const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type = 'page' }) => {
   const { activeSection } = useSidebarContext();
 
@@ -45,7 +40,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
 
   return (
     <Link
-      scroll={false} // Prevent default scrolling behavior to enable smooth scrolling
+      scroll={false}
       href={hrefValue}
       className="relative inline-flex items-center gap-2 hover:opacity-70 focus:opacity-70"
       key={`${name}-${hrefValue}`}
@@ -75,8 +70,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
         <motion.div
           layoutId="sidebar-active"
           className={cn(
-            'absolute bottom-0 left-0 z-[-1] h-full w-full rounded-md bg-gradient-to-r',
-            `from-[${SIDEBAR_SECTION_ACTIVE_COLOR.FROM}] to-[${SIDEBAR_SECTION_ACTIVE_COLOR.TO}]`,
+            'absolute bottom-0 left-0 z-[-1] h-full w-full rounded-md bg-gradient-to-r from-[#4b6cb7] to-[#182848]',
             {
               'w-12': !opened,
             }
