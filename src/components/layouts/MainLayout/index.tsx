@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { AppContextProvider } from '@/context/app.context';
 import { SidebarContextProvider } from '@/context/sidebar.context';
+import { ROUTE } from '@/routes';
 
 import Sidebar from './components/Sidebar';
 
@@ -11,7 +13,16 @@ interface Props {
 }
 
 const MainLayout: React.FC<Props> = ({ children }) => {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
+
+  const isValidLayout = pathname === ROUTE.HOME;
+  if (!isValidLayout)
+    return (
+      <article className="container w-full text-clip">
+        <main className="relative min-h-screen">{children}</main>
+      </article>
+    );
 
   return (
     <AppContextProvider value={{}}>
