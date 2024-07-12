@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { type HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/utils';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   size?: 'md' | 'lg';
 }
 const CircleBox = ({ className, size, children, ...props }: Props) => {

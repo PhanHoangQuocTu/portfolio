@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo, type FC, type ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
 type Props = {
   opened: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-const SidebarLayout: React.FC<Props> = ({ children, opened }) => {
+const SidebarLayout: FC<Props> = ({ children, opened }) => {
   return (
     <aside
       className={cn(
@@ -22,4 +22,4 @@ const SidebarLayout: React.FC<Props> = ({ children, opened }) => {
   );
 };
 
-export default React.memo(SidebarLayout);
+export default memo(SidebarLayout);

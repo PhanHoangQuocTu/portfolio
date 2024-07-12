@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo, type FC } from 'react';
 import { usePathname } from 'next/navigation';
 import { Icons } from '@/assets/icons';
 import { SECTION_ID, SECTION_NAME } from '@/routes';
@@ -70,7 +70,7 @@ interface Props {
   opened: boolean;
 }
 
-const SidebarList: React.FC<Props> = ({ opened }) => {
+const SidebarList: FC<Props> = ({ opened }) => {
   const pathname = usePathname();
 
   return (
@@ -95,4 +95,4 @@ const SidebarList: React.FC<Props> = ({ opened }) => {
   );
 };
 
-export default React.memo(SidebarList);
+export default memo(SidebarList);

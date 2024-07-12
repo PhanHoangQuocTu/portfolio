@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -10,7 +10,7 @@ interface Props {
   pauseOnHover?: boolean;
   className?: string;
   listClassName?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const Marquee = ({
@@ -21,9 +21,9 @@ const Marquee = ({
   pauseOnHover = true,
   className,
 }: Props) => {
-  const [start, setStart] = React.useState(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const [start, setStart] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLUListElement>(null);
 
   const addAnimation = () => {
     if (containerRef.current && scrollerRef.current) {
@@ -42,7 +42,7 @@ const Marquee = ({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     addAnimation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

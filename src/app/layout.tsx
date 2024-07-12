@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 
+import { type ReactNode } from 'react';
 import { type Metadata, type Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 import clsx from 'clsx';
 
 import { fontMono, fontSans } from '@/config/fonts';
@@ -55,7 +57,7 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
       <head />
@@ -66,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>
           <MainLayout>{children}</MainLayout>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

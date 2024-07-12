@@ -1,9 +1,12 @@
-import React from 'react';
-import { SECTION_ID } from '@/routes';
+import React, { type FC } from 'react';
 
-const SkillSection = () => {
+interface Props {
+  id: string;
+}
+
+const SkillSection: FC<Props> = ({ id }) => {
   return (
-    <div id={SECTION_ID.SKILL} className="min-h-screen">
+    <div id={id} className="min-h-screen">
       SkillSection
     </div>
   );

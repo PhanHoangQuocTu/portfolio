@@ -1,9 +1,12 @@
-import React from 'react';
-import { SECTION_ID } from '@/routes';
+import React, { type FC } from 'react';
 
-const ServiceSection = () => {
+interface Props {
+  id: string;
+}
+
+const ServiceSection: FC<Props> = ({ id }) => {
   return (
-    <div id={SECTION_ID.SERVICES} className="min-h-screen">
+    <div id={id} className="min-h-screen">
       ServiceSection
     </div>
   );

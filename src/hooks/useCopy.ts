@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 
 type CopyFn = (text?: string) => void; // Return success
 
 export function useCopy(): [boolean, CopyFn] {
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
 
   const copy = async (textToCopy?: string) => {
     if (!textToCopy) return;

@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
-  React.useEffect(() => {
+  useEffect(() => {
     console.error(error);
   }, [error]);
 

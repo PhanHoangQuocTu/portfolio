@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback, useMemo, type FC } from 'react';
 import Link from 'next/link';
 import { useSidebarContext } from '@/context/sidebar.context';
 import { motion } from 'framer-motion';
@@ -18,14 +18,14 @@ interface Props {
   isActive: boolean;
 }
 
-const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type = 'page' }) => {
+const SidebarItem: FC<Props> = ({ href, name, opened, icon: Icon, id, type = 'page' }) => {
   const { activeSection } = useSidebarContext();
 
-  const isSectionActive = React.useMemo(() => type === 'section' && activeSection === id, [activeSection, id, type]);
+  const isSectionActive = useMemo(() => type === 'section' && activeSection === id, [activeSection, id, type]);
 
-  const hrefValue = React.useMemo(() => (type === 'section' ? `#${id}` : href), [href, id, type]);
+  const hrefValue = useMemo(() => (type === 'section' ? `#${id}` : href), [href, id, type]);
 
-  const handleClick = React.useCallback(
+  const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (type === 'section') {
         e.preventDefault();
@@ -82,4 +82,4 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
   );
 };
 
-export default React.memo(SidebarItem);
+export default memo(SidebarItem);

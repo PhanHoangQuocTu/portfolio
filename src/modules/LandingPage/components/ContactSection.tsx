@@ -1,9 +1,12 @@
-import React from 'react';
-import { SECTION_ID } from '@/routes';
+import React, { type FC } from 'react';
 
-const ContactSection = () => {
+interface Props {
+  id: string;
+}
+
+const ContactSection: FC<Props> = ({ id }) => {
   return (
-    <div id={SECTION_ID.CONTACT} className="min-h-screen">
+    <div id={id} className="min-h-screen">
       ContactSection
     </div>
   );
