@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import Image, { type ImageProps } from 'next/image';
 
 import { siteConfig } from '@/config/site';
@@ -10,7 +10,7 @@ export interface LogoProps extends Omit<ImageProps, 'alt' | 'src'> {
   alt?: string;
 }
 
-export const Logo: FC<LogoProps> = ({
+export const Logo: React.FC<LogoProps> = ({
   src = '/favicon-16x16.png',
   alt = siteConfig.name,
   className,

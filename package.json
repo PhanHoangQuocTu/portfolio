@@ -39,7 +39,8 @@
     "react-player": "^2.15.1",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.1.18",
-    "tailwindcss": "3.4.3"
+    "tailwindcss": "3.4.3",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.5",

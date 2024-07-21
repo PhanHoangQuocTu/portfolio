@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, type PropsWithChildren } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 const sources: string[] = [];
@@ -16,10 +16,10 @@ function loadAll() {
 
   return Promise.allSettled(promises);
 }
-const Preload = ({ children }: PropsWithChildren) => {
-  const [loaded, setLoaded] = useState(false);
+const Preload = ({ children }: React.PropsWithChildren) => {
+  const [loaded, setLoaded] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       await loadAll();
       setLoaded(true);
@@ -30,6 +30,7 @@ const Preload = ({ children }: PropsWithChildren) => {
   }, []);
 
   if (loaded) return <>{children}</>;
+
   return (
     <div className="bg-background fixed inset-0 z-[999999] flex min-h-screen items-center justify-center">
       <Image

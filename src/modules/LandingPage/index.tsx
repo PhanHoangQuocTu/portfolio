@@ -14,15 +14,6 @@ import ProjectSection from './components/ProjectSection';
 import ServiceSection from './components/ServiceSection';
 import SkillSection from './components/SkillSection';
 
-// const AboutSection = dynamic(() => import('./components/AboutSection'));
-// const ContactSection = dynamic(() => import('./components/ContactSection'));
-// const EducationSection = dynamic(() => import('./components/EducationSection'));
-// const ExperienceSection = dynamic(() => import('./components/ExperienceSection'));
-// const OverviewSection = dynamic(() => import('./components/OverviewSection'));
-// const ProjectSection = dynamic(() => import('./components/ProjectSection'));
-// const ServiceSection = dynamic(() => import('./components/ServiceSection'));
-// const SkillSection = dynamic(() => import('./components/SkillSection'));
-
 const LandingPage = () => {
   useIntersectionObserver({
     ids: SECTION_ID_LIST,

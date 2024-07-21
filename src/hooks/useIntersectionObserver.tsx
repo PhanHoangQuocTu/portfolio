@@ -1,6 +1,7 @@
+// hooks/useIntersectionObserver.js
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React from 'react';
 import { useSidebarContext } from '@/context/sidebar.context';
 
 const initOptions = {
@@ -22,18 +23,11 @@ interface Props {
 
 const useIntersectionObserver = ({ ids, options = initOptions }: Props) => {
   const { setActiveSection } = useSidebarContext();
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const [isClient, setIsClient] = useState(false);
+  const observerRef = React.useRef<IntersectionObserver | null>(null);
 
-  const observerOptions = useMemo(() => ({ ...initOptions, ...options }), [options]);
+  const observerOptions = React.useMemo(() => ({ ...initOptions, ...options }), [options]);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
+  React.useEffect(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
@@ -60,7 +54,7 @@ const useIntersectionObserver = ({ ids, options = initOptions }: Props) => {
         observer.disconnect();
       }
     };
-  }, [ids, observerOptions, setActiveSection, isClient]);
+  }, [ids, observerOptions, setActiveSection]);
 
   return null;
 };

@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useButton, type ButtonProps } from '@nextui-org/button';
 import { Ripple } from '@nextui-org/ripple';
 import { Spinner } from '@nextui-org/spinner';

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, type FC, type ReactNode } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 import { AppContextProvider } from '@/context/app.context';
 import { SidebarContextProvider } from '@/context/sidebar.context';
@@ -9,12 +9,12 @@ import { ROUTE } from '@/routes';
 import Sidebar from './components/Sidebar';
 
 interface Props {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const MainLayout: FC<Props> = ({ children }) => {
+const MainLayout: React.FC<Props> = ({ children }) => {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = React.useState<string | null>(null);
 
   const isValidLayout = pathname === ROUTE.HOME;
   if (!isValidLayout)

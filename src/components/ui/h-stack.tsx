@@ -1,4 +1,4 @@
-import React, { forwardRef, type HTMLAttributes } from 'react';
+import React from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 const hStackVariants = tv(
@@ -52,9 +52,9 @@ const hStackVariants = tv(
   }
 );
 
-export interface HStackProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof hStackVariants> {}
+export interface HStackProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof hStackVariants> {}
 
-const HStack = forwardRef<HTMLDivElement, HStackProps>(
+const HStack = React.forwardRef<HTMLDivElement, HStackProps>(
   ({ className, noWrap, pos, align, spacing, children, ...props }, ref) => {
     return (
       <div className={hStackVariants({ spacing, align, className, noWrap, pos })} ref={ref} {...props}>

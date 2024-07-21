@@ -1,6 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
 
-import { StyledButton, VStack } from '@/components/ui';
+import { StyledButton } from '@/components/ui/styled-button';
+import { VStack } from '@/components/ui/v-stack';
 
 export default function NotFound() {
   return (

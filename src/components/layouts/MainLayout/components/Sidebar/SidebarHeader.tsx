@@ -1,15 +1,16 @@
-import React, { memo, type FC } from 'react';
+import React from 'react';
 import { Icons } from '@/assets/icons';
 
 import { cn } from '@/lib/utils';
-import { HStack, StyledButton } from '@/components/ui';
+import { HStack } from '@/components/ui/h-stack';
+import { StyledButton } from '@/components/ui/styled-button';
 
 interface Props {
   opened: boolean;
   toggle: () => void;
 }
 
-const SidebarHeader: FC<Props> = ({ opened, toggle }) => {
+const SidebarHeader: React.FC<Props> = ({ opened, toggle }) => {
   return (
     <HStack pos={'center'}>
       <StyledButton
@@ -27,4 +28,4 @@ const SidebarHeader: FC<Props> = ({ opened, toggle }) => {
   );
 };
 
-export default memo(SidebarHeader);
+export default React.memo(SidebarHeader);

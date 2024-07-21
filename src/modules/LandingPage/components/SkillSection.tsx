@@ -1,10 +1,10 @@
-import React, { type FC } from 'react';
+import React from 'react';
 
 interface Props {
   id: string;
 }
 
-const SkillSection: FC<Props> = ({ id }) => {
+const SkillSection: React.FC<Props> = ({ id }) => {
   return (
     <div id={id} className="min-h-screen">
       SkillSection

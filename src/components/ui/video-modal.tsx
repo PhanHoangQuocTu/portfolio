@@ -1,6 +1,6 @@
 'use client';
 
-import React, { cloneElement, useRef, useState, type ElementRef, type ReactElement, type ReactNode } from 'react';
+import React from 'react';
 import { Modal, ModalContent } from '@nextui-org/modal';
 import ReactPlayer from 'react-player';
 
@@ -8,15 +8,15 @@ import { cn } from '@/lib/utils';
 
 interface Props {
   url?: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const VideoModal = ({ url, children }: Props) => {
-  const [isOpen, setOpen] = useState(false);
-  const ref = useRef<ElementRef<typeof ReactPlayer>>(null);
+  const [isOpen, setOpen] = React.useState(false);
+  const ref = React.useRef<React.ElementRef<typeof ReactPlayer>>(null);
   return (
     <>
-      {cloneElement(children as ReactElement, {
+      {React.cloneElement(children as React.ReactElement, {
         onClick: () => {
           setOpen(true);
         },

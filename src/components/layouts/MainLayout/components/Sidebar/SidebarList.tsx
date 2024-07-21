@@ -1,9 +1,9 @@
-import React, { memo, type FC } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 import { Icons } from '@/assets/icons';
 import { SECTION_ID, SECTION_NAME } from '@/routes';
 
-import { VStack } from '@/components/ui';
+import { VStack } from '@/components/ui/v-stack';
 
 import SidebarItem, { type SidebarItemType } from './SidebarItem';
 
@@ -70,7 +70,7 @@ interface Props {
   opened: boolean;
 }
 
-const SidebarList: FC<Props> = ({ opened }) => {
+const SidebarList: React.FC<Props> = ({ opened }) => {
   const pathname = usePathname();
 
   return (
@@ -95,4 +95,4 @@ const SidebarList: FC<Props> = ({ opened }) => {
   );
 };
 
-export default memo(SidebarList);
+export default React.memo(SidebarList);

@@ -1,10 +1,11 @@
 'use client';
 
+import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { AnimatePresence } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { VStack } from '@/components/ui';
+import { VStack } from '@/components/ui/v-stack';
 
 import SidebarHeader from './SidebarHeader';
 import SidebarLayout from './SidebarLayout';
