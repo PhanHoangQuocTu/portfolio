@@ -29,8 +29,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: var(--Rounded, 100px);
-  background: var(--200, #4b6cb7);
+  background: var(--200, #462832);
 }
 
 @keyframes flicker {

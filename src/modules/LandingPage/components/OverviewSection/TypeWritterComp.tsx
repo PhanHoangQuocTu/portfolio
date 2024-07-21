@@ -7,12 +7,12 @@ import { getTypeWritterOptions } from '../../utils/const';
 
 const TypeWritterComp = () => {
   return (
-    <VStack className="flex-1 text-4xl font-bold lg:text-6xl" justify={'center'}>
-      <span className="relative w-fit bg-white bg-clip-text py-4 font-extrabold text-transparent">
+    <VStack className="flex-1 text-3xl font-bold lg:items-start lg:text-5xl" align={'center'} justify={'center'}>
+      <span className="relative w-fit bg-white bg-clip-text py-4 text-center text-transparent">
         <Typewriter options={getTypeWritterOptions()} />
       </span>
 
-      <div className="absolute w-fit select-none border bg-white bg-clip-text py-4 text-center font-extrabold text-transparent blur-xl">
+      <div className="absolute w-fit select-none border bg-white bg-clip-text py-4 text-center text-transparent blur-xl">
         <Typewriter options={getTypeWritterOptions()} />
       </div>
     </VStack>
