@@ -3,28 +3,17 @@ import Typewriter from 'typewriter-effect';
 
 import { VStack } from '@/components/ui/v-stack';
 
+import { getTypeWritterOptions } from '../../utils/const';
+
 const TypeWritterComp = () => {
   return (
-    <VStack className="text-2xl font-bold lg:text-4xl" justify={'center'}>
-      <span className="relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-white bg-clip-text py-4 text-center text-6xl font-extrabold text-transparent">
-        <Typewriter
-          options={{
-            strings: ['Front End Developer', 'UI/UX Designer', 'Software Engineer'],
-            autoStart: true,
-            loop: true,
-            deleteSpeed: 50,
-          }}
-        />
+    <VStack className="flex-1 text-4xl font-bold lg:text-6xl" justify={'center'}>
+      <span className="relative w-fit bg-white bg-clip-text py-4 font-extrabold text-transparent">
+        <Typewriter options={getTypeWritterOptions()} />
       </span>
-      <div className="absolute mx-auto box-content flex w-fit select-none border bg-white bg-clip-text py-4 text-center text-6xl font-extrabold text-transparent blur-xl">
-        <Typewriter
-          options={{
-            strings: ['Front End Developer', 'UI/UX Designer', 'Software Engineer'],
-            autoStart: true,
-            loop: true,
-            deleteSpeed: 50,
-          }}
-        />
+
+      <div className="absolute w-fit select-none border bg-white bg-clip-text py-4 text-center font-extrabold text-transparent blur-xl">
+        <Typewriter options={getTypeWritterOptions()} />
       </div>
     </VStack>
   );

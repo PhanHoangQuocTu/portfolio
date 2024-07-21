@@ -70,13 +70,15 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
         <motion.div
           layoutId="sidebar-active"
           className={cn(
-            'absolute bottom-0 left-0 z-[-1] h-full w-full rounded-md bg-gradient-to-r from-[#449294] via-[#3a5155] to-[#202020]',
+            'absolute w-fit select-none border bg-white bg-clip-text py-4 pl-14 text-center font-extrabold text-transparent blur-xl',
             {
               'w-12': !opened,
             }
           )}
           transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-        />
+        >
+          {name}
+        </motion.div>
       )}
     </Link>
   );

@@ -1,19 +1,23 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-import { HStack } from '@/components/ui/h-stack';
+import { VStack } from '@/components/ui/v-stack';
+
+const TypeWritterComp = dynamic(() => import('./TypeWritterComp'));
+const InfoOverview = dynamic(() => import('./InfoOverview'));
 
 interface Props {
   id: string;
 }
-const TypeWritterComp = dynamic(() => import('./TypeWritterComp'));
 
 const OverviewSection: React.FC<Props> = ({ id }) => {
   return (
-    <div className="bg-gradient-to-b from-[#449294] via-[#161616] to-[#161616]">
-      <HStack id={id} className="container min-h-screen" align={'center'}>
+    <div className="relative bg-[#161616]">
+      <VStack id={id} className="container min-h-screen" justify={'center'}>
         <TypeWritterComp />
-      </HStack>
+
+        <InfoOverview />
+      </VStack>
     </div>
   );
 };
