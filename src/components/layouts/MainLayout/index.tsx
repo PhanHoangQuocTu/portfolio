@@ -17,9 +17,10 @@ const MainLayout: React.FC<Props> = ({ children }) => {
   const [activeSection, setActiveSection] = React.useState<string | null>(null);
 
   const isValidLayout = pathname === ROUTE.HOME;
+
   if (!isValidLayout)
     return (
-      <article className="container w-full text-clip">
+      <article className="w-full text-clip bg-[#161616]">
         <main className="relative min-h-screen">{children}</main>
       </article>
     );
@@ -30,7 +31,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
         <div className="flex">
           <Sidebar />
 
-          <article className="container w-full text-clip">
+          <article className="w-full text-clip bg-[#161616]">
             <main className="relative min-h-screen">{children}</main>
           </article>
         </div>

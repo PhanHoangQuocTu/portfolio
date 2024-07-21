@@ -20,7 +20,7 @@ const SidebarHeader: React.FC<Props> = ({ opened, toggle }) => {
         })}
         onClick={toggle}
       >
-        <Icons.menuSquare className="hover:text-accent text-black" />
+        <Icons.menuSquare className="hover:text-accent text-white" />
       </StyledButton>
 
       {opened && <span className="flex-1 text-xl font-medium">Portfolio</span>}

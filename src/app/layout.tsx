@@ -5,7 +5,7 @@ import { type Metadata, type Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import clsx from 'clsx';
 
-import { fontMono, fontSans } from '@/config/fonts';
+import { fontMono, fontRoboto, fontSans } from '@/config/fonts';
 import { APP_URL, siteConfig } from '@/config/site';
 import MainLayout from '@/components/layouts/MainLayout';
 
@@ -63,7 +63,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head />
       <body
         suppressHydrationWarning
-        className={clsx('bg-background min-h-screen font-sans antialiased', fontSans.variable, fontMono.variable)}
+        className={clsx(
+          'bg-background min-h-screen font-sans antialiased',
+          fontSans.variable,
+          fontMono.variable,
+          fontRoboto.variable
+        )}
       >
         <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>
           <MainLayout>{children}</MainLayout>

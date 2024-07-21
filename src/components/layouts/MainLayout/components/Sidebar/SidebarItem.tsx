@@ -49,7 +49,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
     >
       <span className="relative z-0 inline-flex aspect-square w-[calc(var(--w-sidebar)-2rem)] items-center justify-center rounded-md">
         <Icon
-          className={cn('text-black transition-all', {
+          className={cn('text-[#5f5f5f] transition-all', {
             'text-white': isSectionActive,
           })}
         />
@@ -58,7 +58,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
       {opened && (
         <motion.span
           animate={{ opacity: 1 }}
-          className={cn('text-black transition-all', {
+          className={cn('text-[#5f5f5f] transition-all', {
             'text-white': isSectionActive,
           })}
         >
@@ -70,7 +70,7 @@ const SidebarItem: React.FC<Props> = ({ href, name, opened, icon: Icon, id, type
         <motion.div
           layoutId="sidebar-active"
           className={cn(
-            'absolute bottom-0 left-0 z-[-1] h-full w-full rounded-md bg-gradient-to-r from-[#4b6cb7] to-[#182848]',
+            'absolute bottom-0 left-0 z-[-1] h-full w-full rounded-md bg-gradient-to-r from-[#449294] via-[#3a5155] to-[#202020]',
             {
               'w-12': !opened,
             }

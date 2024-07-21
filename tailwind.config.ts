@@ -33,6 +33,7 @@ const config: Config = {
         sans: ['var(--font-sans)', ...fontFamily.sans],
         serif: ['var(--font-serif)', ...fontFamily.serif],
         mono: ['var(--font-mono)', ...fontFamily.mono],
+        roboto: ['var(--font-roboto)'],
       },
       flex: {
         full: '0 0 100%',
@@ -156,6 +157,12 @@ const config: Config = {
         '.inset-x-center': {
           left: '50%',
           '@apply absolute -translate-x-1/2': {},
+        },
+        '.filter-saturate-60': {
+          filter: 'saturate(60%)',
+        },
+        '.animation-flicker': {
+          animation: 'flicker steps(100) 1s 1s infinite',
         },
       });
     }),

@@ -1,4 +1,4 @@
-import { Inter as FontSans } from 'next/font/google';
+import { Inter as FontSans, Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
 
 const fontSans = FontSans({
@@ -13,4 +13,10 @@ const fontMono = localFont({
   src: '../assets/fonts/SPACEEXPLORERRegular.woff2',
 });
 
-export { fontSans, fontMono };
+const fontRoboto = Roboto({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  weight: ['100', '300', '400', '500', '700', '900'],
+});
+
+export { fontSans, fontMono, fontRoboto };

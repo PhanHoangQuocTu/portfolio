@@ -18,9 +18,12 @@ const Sidebar = () => {
     <SidebarLayout opened={opened}>
       <VStack
         spacing={32}
-        className={cn('max-w-sidebar fixed left-0 top-0 flex h-full w-full overflow-y-auto p-4', {
-          'max-w-sidebar-expand': opened,
-        })}
+        className={cn(
+          'max-w-sidebar fixed left-0 top-0 flex h-full w-full overflow-y-auto border-r-[0.5px] border-r-[#525252] p-4',
+          {
+            'max-w-sidebar-expand': opened,
+          }
+        )}
       >
         <SidebarHeader opened={opened} toggle={toggle} />
 
