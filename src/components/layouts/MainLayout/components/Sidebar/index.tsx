@@ -19,7 +19,7 @@ const Sidebar = () => {
       <VStack
         spacing={32}
         className={cn(
-          'max-w-sidebar fixed left-0 top-0 flex h-full w-full overflow-y-auto border-r-[0.5px] border-r-[#525252] p-4',
+          'max-w-sidebar fixed left-0 top-0 flex h-full w-full overflow-hidden overflow-y-auto border-r-[0.5px] border-r-[#414040] p-4',
           {
             'max-w-sidebar-expand': opened,
           }

@@ -3,9 +3,9 @@ import dynamic from 'next/dynamic';
 
 import { VStack } from '@/components/ui/v-stack';
 
-const TypeWritterComp = dynamic(() => import('./TypeWritterComp'));
-const InfoOverview = dynamic(() => import('./InfoOverview'));
-const OverviewHeading = dynamic(() => import('./OverviewHeading'));
+const TypeWritterComp = dynamic(() => import('./components/TypeWritterComp'));
+const InfoOverview = dynamic(() => import('./components/InfoOverview'));
+const OverviewHeading = dynamic(() => import('./components/OverviewHeading'));
 
 interface Props {
   id: string;
@@ -13,8 +13,8 @@ interface Props {
 
 const OverviewSection: React.FC<Props> = ({ id }) => {
   return (
-    <div className="relative bg-[#161616]">
-      <VStack id={id} className="container min-h-screen" justify={'center'}>
+    <div id={id} className="relative bg-gradient-to-b from-[#469196] via-[#1828299f] to-[#161616]">
+      <VStack className="container min-h-screen" justify={'center'}>
         <OverviewHeading />
 
         <TypeWritterComp />
