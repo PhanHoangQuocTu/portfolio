@@ -13,7 +13,7 @@ const initOptions = {
 interface IOptions {
   root?: Element | null;
   rootMargin?: string;
-  threshold?: number;
+  threshold?: number | number[];
 }
 
 interface Props {
@@ -35,7 +35,14 @@ const useIntersectionObserver = ({ ids, options = initOptions }: Props) => {
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+          const sectionId = entry.target.id;
+          setActiveSection(sectionId);
+
+          // Update the URL with the section ID
+          if (history && typeof history.pushState === 'function') {
+            const newUrl = `${window.location.pathname}#${sectionId}`;
+            history.replaceState(null, '', newUrl);
+          }
         }
       });
     }, observerOptions);

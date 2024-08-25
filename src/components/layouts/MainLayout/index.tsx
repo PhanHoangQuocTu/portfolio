@@ -6,7 +6,7 @@ import { AppContextProvider } from '@/context/app.context';
 import { SidebarContextProvider } from '@/context/sidebar.context';
 import { ROUTE } from '@/routes';
 
-import Sidebar from './components/Sidebar';
+import FloatingDockLayout from './components/FloatingDockLayout';
 
 interface Props {
   children: React.ReactNode;
@@ -29,10 +29,10 @@ const MainLayout: React.FC<Props> = ({ children }) => {
     <AppContextProvider value={{}}>
       <SidebarContextProvider value={{ activeSection, setActiveSection }}>
         <div className="flex">
-          <Sidebar />
-
-          <article className="w-full text-clip bg-[#161616]">
+          <article className="relative min-h-screen w-full overflow-hidden text-clip">
             <main className="relative min-h-screen">{children}</main>
+
+            <FloatingDockLayout />
           </article>
         </div>
       </SidebarContextProvider>

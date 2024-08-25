@@ -1,11 +1,11 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 
 import { VStack } from '@/components/ui/v-stack';
+import { Vortex } from '@/components/ui/vortex';
 
-const TypeWritterComp = dynamic(() => import('./components/TypeWritterComp'));
-const InfoOverview = dynamic(() => import('./components/InfoOverview'));
-const OverviewHeading = dynamic(() => import('./components/OverviewHeading'));
+import InfoOverview from './components/InfoOverview';
+import OverviewHeading from './components/OverviewHeading';
+import TypeWritterComp from './components/TypeWritterComp';
 
 interface Props {
   id: string;
@@ -13,14 +13,21 @@ interface Props {
 
 const OverviewSection: React.FC<Props> = ({ id }) => {
   return (
-    <div id={id} className="relative bg-gradient-to-b from-[#469196] via-[#1828299f] to-[#161616]">
-      <VStack className="container min-h-screen" justify={'center'}>
-        <OverviewHeading />
+    <div id={id} className="relative">
+      <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        className="flex h-full w-full flex-col items-center justify-center px-2 md:px-10"
+      >
+        <VStack className="container min-h-screen" justify={'center'}>
+          <OverviewHeading />
 
-        <TypeWritterComp />
+          <TypeWritterComp />
 
-        <InfoOverview />
-      </VStack>
+          <InfoOverview />
+        </VStack>
+      </Vortex>
     </div>
   );
 };
