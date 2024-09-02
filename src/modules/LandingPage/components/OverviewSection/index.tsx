@@ -1,34 +1,23 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 import { VStack } from '@/components/ui/v-stack';
-import { Vortex } from '@/components/ui/vortex';
 
-import InfoOverview from './components/InfoOverview';
-import OverviewHeading from './components/OverviewHeading';
-import TypeWritterComp from './components/TypeWritterComp';
+import { type ISectionProps } from '../../types';
 
-interface Props {
-  id: string;
-}
+const InfoOverview = dynamic(() => import('./components/InfoOverview'));
+const OverviewHeading = dynamic(() => import('./components/OverviewHeading'));
+const TypeWritterComp = dynamic(() => import('./components/TypeWritterComp'));
 
-const OverviewSection: React.FC<Props> = ({ id }) => {
+const OverviewSection: React.FC<ISectionProps> = ({ id }) => {
   return (
-    <div id={id} className="relative">
-      <Vortex
-        backgroundColor="black"
-        rangeY={800}
-        particleCount={500}
-        className="flex h-full w-full flex-col items-center justify-center px-2 md:px-10"
-      >
-        <VStack className="container min-h-screen" justify={'center'}>
-          <OverviewHeading />
+    <VStack id={id} className="container relative min-h-screen" justify={'center'}>
+      <OverviewHeading />
 
-          <TypeWritterComp />
+      <TypeWritterComp />
 
-          <InfoOverview />
-        </VStack>
-      </Vortex>
-    </div>
+      <InfoOverview />
+    </VStack>
   );
 };
 

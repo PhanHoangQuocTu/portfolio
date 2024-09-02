@@ -1,12 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, type HTMLAttributes, type PropsWithChildren } from 'react';
 import { motion } from 'framer-motion';
 import { createNoise3D } from 'simplex-noise';
 
 import { cn } from '@/lib/utils';
 
-interface VortexProps {
-  children?: any;
-  className?: string;
+interface VortexProps extends PropsWithChildren, HTMLAttributes<HTMLCanvasElement> {
   containerClassName?: string;
   particleCount?: number;
   rangeY?: number;
@@ -20,10 +18,10 @@ interface VortexProps {
 export const Vortex = (props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef(null);
-  const particleCount = props.particleCount || 700;
-  const particlePropCount = 9;
+  const particleCount =
+    typeof window !== 'undefined' ? Math.min(props.particleCount || 500, window.innerWidth * 0.2) : 500;
+  const particlePropCount = 8;
   const particlePropsLength = particleCount * particlePropCount;
-  const rangeY = props.rangeY || 100;
   const baseTTL = 50;
   const rangeTTL = 150;
   const baseSpeed = props.baseSpeed || 0.0;
@@ -39,10 +37,10 @@ export const Vortex = (props: VortexProps) => {
   const noise3D = createNoise3D();
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
+  let animationFrameId: number;
 
   const TAU: number = 2 * Math.PI;
   const rand = (n: number): number => n * Math.random();
-  const randRange = (n: number): number => n - rand(2 * n);
   const fadeInOut = (t: number, m: number): number => {
     let hm = 0.5 * m;
     return Math.abs(((t + hm) % m) - hm) / hm;
@@ -65,7 +63,7 @@ export const Vortex = (props: VortexProps) => {
 
   const initParticles = () => {
     tick = 0;
-    particleProps = new Float32Array(particlePropsLength);
+    particleProps = new Float32Array(particlePropsLength); // Correctly sized array
 
     for (let i = 0; i < particlePropsLength; i += particlePropCount) {
       initParticle(i);
@@ -79,7 +77,7 @@ export const Vortex = (props: VortexProps) => {
     let x, y, vx, vy, life, ttl, speed, radius;
 
     x = rand(canvas.width);
-    y = center[1] + randRange(rangeY);
+    y = rand(canvas.height);
     vx = 0;
     vy = 0;
     life = 0;
@@ -87,8 +85,9 @@ export const Vortex = (props: VortexProps) => {
     speed = baseSpeed + rand(rangeSpeed);
     radius = baseRadius + rand(rangeRadius);
 
-    // Initialize particle properties
-    particleProps.set([x, y, vx, vy, life, ttl, speed, radius], i);
+    if (i + particlePropCount <= particlePropsLength) {
+      particleProps.set([x, y, vx, vy, life, ttl, speed, radius], i);
+    }
   };
 
   const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
@@ -103,12 +102,18 @@ export const Vortex = (props: VortexProps) => {
     renderGlow(canvas, ctx);
     renderToScreen(canvas, ctx);
 
-    window.requestAnimationFrame(() => draw(canvas, ctx));
+    animationFrameId = window.requestAnimationFrame(() => draw(canvas, ctx));
   };
 
   const drawParticles = (ctx: CanvasRenderingContext2D) => {
-    for (let i = 0; i < particlePropsLength; i += particlePropCount) {
-      updateParticle(i, ctx);
+    const batchSize = Math.floor(particleCount / 10) * particlePropCount;
+
+    for (let i = 0; i < particlePropsLength; i += batchSize) {
+      // Ensure the loop doesn't exceed the array length
+      const upperLimit = Math.min(i + batchSize, particlePropsLength);
+      for (let j = i; j < upperLimit; j += particlePropCount) {
+        updateParticle(j, ctx);
+      }
     }
   };
 
@@ -163,7 +168,7 @@ export const Vortex = (props: VortexProps) => {
     ctx.save();
     ctx.lineCap = 'round';
     ctx.lineWidth = radius;
-    ctx.strokeStyle = `hsla(0, 0%, 100%, ${fadeInOut(life, ttl)})`; // White color with fading opacity
+    ctx.strokeStyle = `hsla(0, 0%, 100%, ${fadeInOut(life, ttl)})`;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x2, y2);
@@ -177,13 +182,17 @@ export const Vortex = (props: VortexProps) => {
   };
 
   const resize = (canvas: HTMLCanvasElement, _ctx?: CanvasRenderingContext2D) => {
-    const { innerWidth, innerHeight } = window;
+    const container = containerRef.current;
 
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
+    if (container) {
+      const { offsetWidth, offsetHeight } = container;
 
-    center[0] = 0.5 * canvas.width;
-    center[1] = 0.5 * canvas.height;
+      canvas.width = offsetWidth;
+      canvas.height = offsetHeight;
+
+      center[0] = 0.5 * canvas.width;
+      center[1] = 0.5 * canvas.height;
+    }
   };
 
   const renderGlow = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
@@ -207,15 +216,30 @@ export const Vortex = (props: VortexProps) => {
     ctx.restore();
   };
 
+  const debounce = (func: Function, wait: number) => {
+    let timeout: NodeJS.Timeout;
+    return () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(), wait);
+    };
+  };
+
   useEffect(() => {
     setup();
-    window.addEventListener('resize', () => {
+    const handleResize = debounce(() => {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext('2d');
       if (canvas && ctx) {
         resize(canvas, ctx);
       }
-    });
+    }, 200);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

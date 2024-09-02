@@ -3,19 +3,15 @@ import dynamic from 'next/dynamic';
 
 import { VStack } from '@/components/ui/v-stack';
 
-interface Props {
-  id: string;
-}
+import { type ISectionProps } from '../../types';
 
 const AboutOverview = dynamic(() => import('./components/AboutOverview'));
 
-const AboutSection: React.FC<Props> = ({ id }) => {
+const AboutSection: React.FC<ISectionProps> = ({ id }) => {
   return (
-    <div id={id} className="relative py-10">
-      <VStack className="container min-h-screen">
-        <AboutOverview />
-      </VStack>
-    </div>
+    <VStack id={id} className="container relative min-h-screen" justify={'center'}>
+      <AboutOverview />
+    </VStack>
   );
 };
 

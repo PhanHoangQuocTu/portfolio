@@ -1,15 +1,9 @@
 import React from 'react';
 
-interface Props {
-  id: string;
-}
+import { type ISectionProps } from '../types';
 
-const ServiceSection: React.FC<Props> = ({ id }) => {
-  return (
-    <div id={id} className="min-h-screen">
-      ServiceSection
-    </div>
-  );
+const ServiceSection: React.FC<ISectionProps> = ({ id }) => {
+  return <div id={id} className="relative min-h-screen"></div>;
 };
 
 export default ServiceSection;
