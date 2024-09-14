@@ -1,5 +1,12 @@
 export const ROUTE = {
-  HOME: '/',
+  OVERVIEW: '/',
+  ABOUT: '/about',
+  SERVICES: '/services',
+  SKILL: '/skill',
+  EDUCATION: '/education',
+  EXPERIENCE: '/experience',
+  PROJECT: '/project',
+  CONTACT: '/contact',
 };
 
 export const SECTION_NAME = {

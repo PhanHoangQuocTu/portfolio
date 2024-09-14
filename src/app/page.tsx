@@ -1,3 +1,3 @@
-import LandingPage from '@/modules/LandingPage';
+import OverviewPage from '@/modules/OverviewPage';
 
-export default LandingPage;
+export default OverviewPage;

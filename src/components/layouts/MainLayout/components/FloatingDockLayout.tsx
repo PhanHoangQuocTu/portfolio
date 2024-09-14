@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useSidebarContext } from '@/context/sidebar.context';
-import { SECTION_ID } from '@/routes';
+import { usePathname } from 'next/navigation';
+import { ROUTE, SECTION_ID } from '@/routes';
 import {
   IconBook,
   IconBrain,
@@ -28,26 +28,54 @@ const icons = {
   [SECTION_ID.CONTACT]: IconPhone,
 };
 
+const routes = [
+  {
+    id: SECTION_ID.OVERVIEW,
+    href: ROUTE.OVERVIEW,
+  },
+  {
+    id: SECTION_ID.ABOUT,
+    href: ROUTE.ABOUT,
+  },
+  {
+    id: SECTION_ID.SERVICES,
+    href: ROUTE.SERVICES,
+  },
+  {
+    id: SECTION_ID.SKILL,
+    href: ROUTE.SKILL,
+  },
+  {
+    id: SECTION_ID.EDUCATION,
+    href: ROUTE.EDUCATION,
+  },
+  {
+    id: SECTION_ID.EXPERIENCE,
+    href: ROUTE.EXPERIENCE,
+  },
+];
+
 const FloatingDockLayout = () => {
-  const { activeSection } = useSidebarContext();
+  const pathname = usePathname();
 
   const links = React.useMemo(
     () =>
       Object.keys(icons).map((sectionId) => {
         const IconComponent = icons[sectionId];
+        const route = routes.find((route) => route?.id === sectionId);
         return {
-          title: sectionId.charAt(0) + sectionId.slice(1).toLowerCase(),
+          title: sectionId.charAt(0).toUpperCase() + sectionId.slice(1).toLowerCase(),
           icon: (
             <IconComponent
               className={cn('h-full w-full text-neutral-500 dark:text-neutral-300', {
-                'text-white': activeSection === sectionId,
+                'text-white': pathname === route?.href,
               })}
             />
           ),
-          href: `#${sectionId}`,
+          href: route?.href || '',
         };
       }),
-    [activeSection]
+    [pathname]
   );
 
   return (

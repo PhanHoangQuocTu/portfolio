@@ -3,7 +3,7 @@ import Typewriter from 'typewriter-effect';
 
 import { VStack } from '@/components/ui/v-stack';
 
-import { getTypeWritterOptions } from '../../../utils/const';
+import { getTypeWritterOptions } from '../utils/const';
 
 const TypeWritterComp = () => {
   return (
