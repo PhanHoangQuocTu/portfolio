@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { type Metadata, type Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import clsx from 'clsx';
+import { ViewTransitions } from 'next-view-transitions';
 
 import { fontMono, fontRoboto, fontSans } from '@/config/fonts';
 import { APP_URL, siteConfig } from '@/config/site';
@@ -59,22 +60,24 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
-      <head />
-      <body
-        suppressHydrationWarning
-        className={clsx(
-          'bg-background min-h-screen font-sans antialiased',
-          fontSans.variable,
-          fontMono.variable,
-          fontRoboto.variable
-        )}
-      >
-        <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>
-          <MainLayout>{children}</MainLayout>
-        </Providers>
-        <Analytics />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
+        <head />
+        <body
+          suppressHydrationWarning
+          className={clsx(
+            'bg-background min-h-screen font-sans antialiased',
+            fontSans.variable,
+            fontMono.variable,
+            fontRoboto.variable
+          )}
+        >
+          <Providers themeProps={{ attribute: 'class', forcedTheme: 'light' }}>
+            <MainLayout>{children}</MainLayout>
+          </Providers>
+          <Analytics />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

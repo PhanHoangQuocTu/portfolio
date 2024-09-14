@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import Link from 'next/link';
 import { IconLayoutNavbarCollapse } from '@tabler/icons-react';
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
+import { Link } from 'next-view-transitions';
 
 import { cn } from '@/lib/utils';
 
