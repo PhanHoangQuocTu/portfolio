@@ -62,7 +62,7 @@ const config: Config = {
       backgroundImage: {},
       boxShadow: {},
       dropShadow: {
-        'neon-white': '2px 10px 60px rgba(255, 255, 255, 0.9)',
+        'neon-white': '3px 20px 60px rgba(255, 255, 255, 0.9)',
       },
       colors: {
         border: 'hsl(var(--border))',

@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Home,
   LogOut,
+  Mail,
   MenuSquare,
   Phone,
   User,
@@ -28,6 +29,7 @@ const IconList = {
   briefcaseBusiness,
   folderGit2: FolderGit2,
   phone: Phone,
+  mail: Mail,
 };
 
 type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
